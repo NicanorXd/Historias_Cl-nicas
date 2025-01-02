@@ -14,6 +14,9 @@ export class RoleMysqlSchema implements RoleEntity {
   @Column()
   icon: string;
 
+  @Column({ default: false })
+  isRoot: boolean;
+
   @Column({ type: Boolean })
   state: boolean;
 

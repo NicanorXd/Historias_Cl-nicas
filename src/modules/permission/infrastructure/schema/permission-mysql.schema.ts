@@ -1,10 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { PermissionEntity } from '../../domain/permission.entity';
 import { PermissionActionEnum } from '../../domain/permission.enum';
 
 @Entity('permission')
 export class PermissionMysqlSchema implements PermissionEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn('uuid')
   id: string;
 
   @Column()
@@ -12,7 +12,4 @@ export class PermissionMysqlSchema implements PermissionEntity {
 
   @Column()
   action: PermissionActionEnum;
-
-  @Column({ type: Boolean })
-  state: boolean;
 }
