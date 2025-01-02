@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receta Médica</title>
+    <style>
+        /* Estilo de la página */
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            height: 210mm;
+            padding: 5mm;
+            box-sizing: border-box;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            color: #3c2a21; /* Color marrón oscuro */
+            font-family: 'Georgia', serif;
+        }
+
+        /* Diseño de las secciones */
+        .info-paciente, .receta-medica {
+            background-color: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #3c2a21; /* Borde marrón oscuro */
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+            font-size: 14px;
+        }
+
+        .info-paciente h2, .receta-medica h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #4c3a2f; /* Tono marrón oscuro */
+        }
+
+        .info-paciente p, .receta-medica p {
+            font-size: 16px;
+            color: #4c3a2f; /* Tono marrón oscuro */
+            margin: 5px 0;
+        }
+
+        .info-paciente .detalle, .receta-medica .detalle {
+            font-weight: bold;
+        }
+
+        /* Detalles de los medicamentos */
+        .medicamentos ul {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .medicamentos li {
+            margin: 8px 0;
+            font-size: 15px;
+            color: #4c3a2f;
+        }
+
+       
+
+        /* Pie de página */
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #7f7f7f;
+            margin-top: 30px;
+        }
+
+       
+    </style>
+</head>
+<body class="background-texture">
+
+    <!-- Cabecera -->
+    <div class="header">
+        <h1>Receta Médica</h1>
+        <p>Consultorio Médico Dr. Juan Pérez</p>
+    </div>
+
+    <!-- Información del Paciente -->
+    <div class="info-paciente">
+        <h2>Información del Paciente</h2>
+        <p><span class="detalle">Nombre:</span> Ana María Gómez</p>
+        <p><span class="detalle">Edad:</span> 34 años</p>
+        <p><span class="detalle">Género:</span> Femenino</p>
+        <p><span class="detalle">Fecha de Nacimiento:</span> 2 de mayo de 1990</p>
+        <p><span class="detalle">Número de Identificación:</span> 9876543210</p>
+        <p><span class="detalle">Teléfono:</span> 555-1234-5678</p>
+    </div>
+
+    <!-- Receta Médica -->
+    <div class="receta-medica">
+        <h2>Receta Médica</h2>
+        <p><span class="detalle">Médico Tratante:</span> Dr. Juan Pérez</p>
+        <p><span class="detalle">Especialidad:</span> Medicina General</p>
+        <p><span class="detalle">Fecha de Consulta:</span> 30 de diciembre de 2024</p>
+        <h3>Medicamentos Recetados:</h3>
+        <div class="medicamentos">
+            <ul>
+                <li><strong>Paracetamol 500mg:</strong> Tomar 1 tableta cada 8 horas durante 5 días.</li>
+                <li><strong>Amoxicilina 250mg:</strong> Tomar 1 cápsula cada 12 horas durante 7 días.</li>
+                <li><strong>Ibuprofeno 200mg:</strong> Tomar 1 tableta cada 6 horas en caso de dolor o fiebre.</li>
+            </ul>
+        </div>
+        <p><span class="detalle">Instrucciones Adicionales:</span> Mantener reposo, evitar el consumo de alcohol durante el tratamiento y consultar al médico si los síntomas persisten.</p>
+    </div>
+
+    <!-- Pie de Página -->
+    <div class="footer">
+        <p>Este es un documento generado por el sistema de recetas médicas. Para cualquier duda, consulte a su médico.</p>
+    </div>
+
+</body>
+</html>

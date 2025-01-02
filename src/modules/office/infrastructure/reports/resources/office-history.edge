@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reporte Médico</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 5px;
+        padding: 5px;
+        background-color: #f4f4f4;
+      }
+      h1 {
+        text-align: center;
+        color: #2c3e50;
+      }
+      .info-paciente,
+      .historial-medico {
+        background-color: #fff;
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .info-paciente h2,
+      .historial-medico h2 {
+        color: #2980b9;
+      }
+      .info-paciente p,
+      .historial-medico p {
+        font-size: 14px;
+        margin: 5px 0;
+      }
+      .info-paciente .detalle,
+      .historial-medico .detalle {
+        font-weight: bold;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: none; /* Sin sombra en impresión */
+        }
+
+        /* Estilo para las celdas de la tabla */
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 16px;
+            border: 1px solid #ddd; /* Borde fino para la impresión */
+        }
+
+        /* Encabezado de la tabla */
+        th {
+            background-color: #3498db; /* Fondo azul para el encabezado */
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Estilo para las filas alternas */
+        tr:nth-child(even) {
+            background-color: #00000; /* Color suave para filas alternas */
+        }
+
+        /* Asegurarse de que los elementos de la tabla sean legibles en impresión */
+        td, th {
+            font-size: 14px; /* Asegura tamaño adecuado para impresión */
+        }
+
+        /* Ajustes de márgenes y otras propiedades para impresión */
+        @media print {
+            body {
+                background-color: white;
+                margin: 0;
+                padding: 0;
+            }
+            table {
+                width: 100%;
+                border: 1px solid #000; /* Borde fino para la tabla impresa */
+                box-shadow: none;
+            }
+            th, td {
+                padding: 8px 10px; /* Menos relleno para una tabla más compacta */
+                font-size: 14px;
+                text-align: left;
+            }
+            /* Asegurar que los encabezados de la tabla no se repitan en páginas */
+            thead {
+                display: table-header-group;
+            }
+        }
+
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+    </style>
+  </head>
+  <body>
+    <h1>Reporte Médico del Paciente</h1>
+
+    <!-- Información del Paciente -->
+    <div class="info-paciente">
+      <h2>Información del Paciente</h2>
+      <p><span class="detalle">Nombre:</span> {{ office.attention?.medicalConsultation?.patient?.name }} {{ office.attention?.medicalConsultation?.patient?.lastname }}</p>
+      <p><span class="detalle">Edad:</span> {{ birthday() }} años</p>
+      <p><span class="detalle">Género:</span> {{ office.attention?.medicalConsultation?.patient?.gender == 'M' ? 'Masculino' : 'Femenino' }}</p>
+      <p>
+        <span class="detalle">Fecha de Nacimiento:</span> {{ toDate(office.attention?.medicalConsultation?.patient?.dateOfBirth) }}
+      </p>
+      <p><span class="detalle">DNI: </span> {{ office.attention?.medicalConsultation?.patient?.documentNumber }}</p>
+      <p>
+        <span class="detalle">Dirección:</span> {{ office.attention?.medicalConsultation?.patient?.addressCurrent || '' }}
+      </p>
+      <p><span class="detalle">Teléfono de Contacto:</span> {{ office.attention?.medicalConsultation?.patient?.phone || '' }}</p>
+    </div>
+
+    <!-- general -->
+    <div class="historial-medico">
+      <h2>Examen Clínico General</h2>
+      <p>
+        <span class="detalle">P/A: </span> {{ office.attention.mmhg }} mmhg
+      </p> 
+      <p>
+        <span class="detalle">Peso: </span> {{ office.attention.weigth }} Kg
+      </p>
+      <p>
+        <span class="detalle">Temperatura: </span> {{ office.attention.weigth }} C°
+      </p>
+      <p>
+        <span class="detalle">Talla: </span> {{ office.attention.talle }} cm
+      </p>
+      <p>
+        <span class="detalle">FC: </span> {{ office.attention.fc }} x
+      </p>
+      <p>
+        <span class="detalle">I.M.C: </span> {{ office.attention.imc }}
+      </p>
+      <p>
+        <span class="detalle">Estado General: </span> {{ office.attention.generalCondition }}
+      </p>
+    </div>
+
+    <!-- anamnesis -->
+    @if(office.anamnesis)
+      <div class="historial-medico">
+        <h2>Anamnesis</h2>
+        <p>
+          <span class="detalle">Tiempo de la enfermedad: </span> {{ office?.anamnesis?.timeSick }} 
+        </p> 
+        <p>
+          <span class="detalle">Motivo de Consulta: </span> {{   office?.anamnesis?.reason }}
+        </p>
+        <p>
+          <span class="detalle">Relato cronológico de la enfermedad: </span> {{  office?.anamnesis?.illnessStory }}
+        </p>
+        <p>
+          <span class="detalle">Funciones biológicas: </span> {{ office?.anamnesis?.biological }}
+        </p>
+        <p>
+          <span class="detalle">Antecedentes: </span> {{  office?.anamnesis?.background }}
+        </p>
+      </div>  
+    @endif
+
+    <!-- preferencial -->
+    @if(!!office.preferential)
+      <div class="historial-medico">
+        <h2>Examen Clínico Preferencial</h2>
+        <p>
+          <span class="detalle">Descripción: </span> {{ office.preferential }} 
+        </p> 
+      </div>  
+    @endif
+
+    <!-- diagnosis -->
+    @if(office.diagnosis?.length)
+      <div class="historial-medico">
+        <h2>Diagnósticos</h2>
+
+        <table width="100%" border="1">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>CIE-10</th>
+              <th>Diagnostico</th>
+              <th>Comentario</th>
+              <th>Morbilidad</th>
+            </tr>
+          </thead>
+          <tbody>
+           @each((item, index) in office.diagnosis)
+            <tr>
+              <td class="text-center">{{ index + 1 }}</td>
+              <td class="text-center">{{ item.diagnosis.cie10 }}</td>
+              <td class="text-center">{{ item.diagnosis.description }}</td>
+              <td class="text-center">{{ item.comment }}</td>
+              <td class="text-center">{{ item.morbilidad }}</td>
+            </tr>
+           @endeach
+          </tbody>
+        </table>
+
+        <br />
+
+        <p>
+          <span class="detalle">Plan de trabajo: </span> {{ office.workspace }} 
+        </p> 
+        <p>
+          <span class="detalle">Fecha prox. cita: </span> {{ toDate(office.nextAppointment) }}
+        </p>
+      </div>
+    @endif
+
+     <!-- tratamiento -->
+     @if(office.tratamientos?.length)
+     <div class="historial-medico">
+       <h2>Tratamientos</h2>
+
+       <table width="100%" border="1">
+         <thead>
+           <tr>
+             <th>N°</th>
+             <th>Medicamento</th>
+             <th>Presentación</th>
+             <th>Dosis</th>
+             <th>Vía de Administración</th>
+             <th>Frecuencia</th>
+             <th>Duración</th>
+           </tr>
+         </thead>
+         <tbody>
+          @each((item, index) in office.tratamientos)
+           <tr>
+             <td class="text-center">{{ index + 1 }}</td>
+             <td class="text-center">{{ item.description }}</td>
+             <td class="text-center">{{ item.presentation.description }}</td>
+             <td class="text-center">{{ item.dosis }}</td>
+             <td class="text-center">{{ item.administration.description }}</td>
+             <td class="text-center">{{ item.frequency }}</td>
+             <td class="text-center">{{ item.duration }}</td>
+           </tr>
+          @endeach
+         </tbody>
+       </table>
+     </div>
+   @endif
+  </body>
+</html>
