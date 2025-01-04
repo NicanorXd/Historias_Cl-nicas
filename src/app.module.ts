@@ -24,6 +24,7 @@ import { OfficeModule } from './modules/office/office.module';
 import { DiagnosisDetailModule } from './modules/diagnosis-detail/diagnosis-detail.module';
 import { TratamientoModule } from './modules/tratamiento/tratamiento.module';
 import { AnamnesisModule } from './modules/anamnesis/anamnesis.module';
+import { ReportsModule } from './modules/reports/report.module';
 
 @Module({
   imports: [
@@ -77,6 +78,7 @@ import { AnamnesisModule } from './modules/anamnesis/anamnesis.module';
     AnamnesisModule,
     DiagnosisDetailModule,
     TratamientoModule,
+    ReportsModule,
   ],
 })
 export class AppModule {}

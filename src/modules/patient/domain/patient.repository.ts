@@ -4,10 +4,12 @@ import {
   PatientFindParams,
   PatientListParams,
   PatientPaginateParams,
+  PatientReportParams,
 } from './patient.params';
 import { PatientEntity } from './patient.entity';
 import { PatientValue } from './patient.value';
 import { PersistenceRepository } from 'src/shared/persistence/domain/persistence.repository';
+import { PatientReportInterface } from './interfaces/patient-report.interface';
 
 export interface PatientRepository extends PersistenceRepository {
   paginatePatients(
@@ -22,4 +24,5 @@ export interface PatientRepository extends PersistenceRepository {
   ): Promise<boolean>;
   deletePatient(parmas: PatientFindParams): Promise<boolean>;
   countPatient(parmas: PatientListParams): Promise<number>;
+  listReport(params: PatientReportParams): Promise<PatientReportInterface[]>;
 }

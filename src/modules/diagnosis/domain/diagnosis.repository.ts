@@ -4,10 +4,12 @@ import {
   DiagnosisFindParams,
   DiagnosisListParams,
   DiagnosisPaginateParams,
+  DiagnosisReportParams,
 } from './diagnosis.params';
 import { DiagnosisEntity } from './diagnosis.entity';
 import { DiagnosisValue } from './diagnosis.value';
 import { PersistenceRepository } from 'src/shared/persistence/domain/persistence.repository';
+import { DiagnosisReportInterface } from './interfaces/diagnosis-report.interface';
 
 export interface DiagnosisRepository extends PersistenceRepository {
   paginateDiagnoses(
@@ -21,4 +23,7 @@ export interface DiagnosisRepository extends PersistenceRepository {
     payload: DiagnosisEditParams,
   ): Promise<boolean>;
   deleteDiagnosis(parmas: DiagnosisFindParams): Promise<boolean>;
+  listReport(
+    params: DiagnosisReportParams,
+  ): Promise<DiagnosisReportInterface[]>;
 }

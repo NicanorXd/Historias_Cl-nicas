@@ -15,6 +15,12 @@ export interface PatientPaginateParams extends PatientListParams {
   limit: number;
 }
 
+export interface PatientReportParams {
+  dateStart: string;
+  dateOver: string;
+  gender?: PatientGenderEnum;
+}
+
 export interface PatientCreateParams {
   name: string;
   lastname: string;

@@ -1,3 +1,5 @@
+import { PatientGenderEnum } from 'src/modules/patient/domain/patient.enum';
+
 export interface DiagnosisFindParams {
   id?: number;
   cie10?: string;
@@ -10,6 +12,12 @@ export interface DiagnosisListParams extends DiagnosisFindParams {
 export interface DiagnosisPaginateParams extends DiagnosisListParams {
   page: number;
   limit: number;
+}
+
+export interface DiagnosisReportParams {
+  dateStart: string;
+  dateOver: string;
+  gender?: PatientGenderEnum;
 }
 
 export interface DiagnosisCreateParams {

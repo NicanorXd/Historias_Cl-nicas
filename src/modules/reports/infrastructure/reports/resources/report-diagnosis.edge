@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reporte Médico - Tipo de Diagnóstico/Rango de Edades</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 5px;
+        padding: 5px;
+        background-color: #f4f4f4;
+      }
+      h1 {
+        text-align: center;
+        color: #2c3e50;
+      }
+      .info-paciente,
+      .historial-medico {
+        background-color: #fff;
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .info-paciente h2,
+      .historial-medico h2 {
+        color: #2980b9;
+      }
+      .info-paciente p,
+      .historial-medico p {
+        font-size: 14px;
+        margin: 5px 0;
+      }
+      .info-paciente .detalle,
+      .historial-medico .detalle {
+        font-weight: bold;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: none; /* Sin sombra en impresión */
+        }
+
+        /* Estilo para las celdas de la tabla */
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 16px;
+            border: 1px solid #ddd; /* Borde fino para la impresión */
+        }
+
+        /* Encabezado de la tabla */
+        th {
+            background-color: #3498db; /* Fondo azul para el encabezado */
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Estilo para las filas alternas */
+        tr:nth-child(even) {
+            background-color: #00000; /* Color suave para filas alternas */
+        }
+
+        /* Asegurarse de que los elementos de la tabla sean legibles en impresión */
+        td, th {
+            font-size: 14px; /* Asegura tamaño adecuado para impresión */
+        }
+
+        /* Ajustes de márgenes y otras propiedades para impresión */
+        @media print {
+            body {
+                background-color: white;
+                margin: 0;
+                padding: 0;
+            }
+            table {
+                width: 100%;
+                border: 1px solid #000; /* Borde fino para la tabla impresa */
+                box-shadow: none;
+            }
+            th, td {
+                padding: 8px 10px; /* Menos relleno para una tabla más compacta */
+                font-size: 14px;
+                text-align: left;
+            }
+            /* Asegurar que los encabezados de la tabla no se repitan en páginas */
+            thead {
+                display: table-header-group;
+            }
+        }
+
+    </style>
+  </head>
+  <body>
+    <h1>Reporte por Diagnostico</h1>
+    <div class="text-center">
+      @if(params.gender)
+        <p>Sexo:  {{ params.gender == 'M' ? 'HOMBRE' : 'MUJER' }}</p>  
+      @endif
+      <p>
+        <b>{{ toDate(params.dateStart) }} - {{ toDate(params.dateOver) }}</b>
+      </p>
+    </div>
+
+    <table width="100%" border="1">
+      <thead>
+        <tr>
+          <th>Tipo de Diagnóstico/Rango de Edades</th>
+          <th>0-6</th>
+          <th>7-12</th>
+          <th>13-20</th>
+          <th>21-25</th>
+          <th>26-60</th>
+          <th>+61</th>
+          <th>TOTAL</th>
+        </tr>
+      </thead>
+      <tbody>
+       @each((item, index) in data)
+        <tr>
+          <td class="text-center">{{ item.description }}</td>
+          <td class="text-center">{{ item.d_0_6 }}</td>
+          <td class="text-center">{{ item.d_7_12 }}</td>
+          <td class="text-center">{{ item.d_13_20 }}</td>
+          <td class="text-center">{{ item.d_21_25 }}</td>
+          <td class="text-center">{{ item.d_26_60 }}</td>
+          <td class="text-center">{{ item.d_61 }}</td>
+          <td class="text-center">{{ item.total }}</td>
+        </tr>
+       @endeach
+      </tbody>
+    </table>
+  </body>
+</html>

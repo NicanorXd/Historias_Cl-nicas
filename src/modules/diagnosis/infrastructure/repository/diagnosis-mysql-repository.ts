@@ -10,12 +10,15 @@ import {
   DiagnosisFindParams,
   DiagnosisListParams,
   DiagnosisPaginateParams,
+  DiagnosisReportParams,
 } from '../../domain/diagnosis.params';
 import { DiagnosisEntity } from '../../domain/diagnosis.entity';
 import { DiagnosisSelectMysqlQuery } from './query/diagnosis-select-mysql.query';
 import { DiagnosisValue } from '../../domain/diagnosis.value';
 import { PaginateEntity } from 'src/shared/persistence/domain/paginate.entity';
 import { paginate } from 'nestjs-typeorm-paginate';
+import { DiagnosisReportInterface } from '../../domain/interfaces/diagnosis-report.interface';
+import { DiagnosisReportMysqlQuery } from './query/diagnosis-report-mysql.query';
 
 @Injectable()
 export class DiagnosisMysqlRepository
@@ -70,5 +73,12 @@ export class DiagnosisMysqlRepository
     const repository = this.manager.getRepository(DiagnosisMysqlSchema);
     const { affected } = await repository.delete(params);
     return affected > 0;
+  }
+
+  async listReport(
+    params: DiagnosisReportParams,
+  ): Promise<DiagnosisReportInterface[]> {
+    const repository = this.manager.getRepository(DiagnosisMysqlSchema);
+    return new DiagnosisReportMysqlQuery(repository).execute(params);
   }
 }

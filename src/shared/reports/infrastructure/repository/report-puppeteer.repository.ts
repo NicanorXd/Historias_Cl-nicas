@@ -20,7 +20,6 @@ export class ReportPuppeteerRepository implements ReportRepository {
     options?: PDFOptions,
   ): Promise<ReportEntity> {
     const browser = await puppeteer.launch({
-      ...options,
       headless: true,
       args: ['--no-sandbox'],
     });
@@ -37,7 +36,10 @@ export class ReportPuppeteerRepository implements ReportRepository {
         right: '10px',
         bottom: '30px',
       },
+      ...options,
     });
+
+    await browser.close();
 
     return {
       type: 'application/pdf',

@@ -41,6 +41,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "coinpayments": "^2.2.0",
+    "collect.js": "^4.36.1",
     "edge.js": "3.5.1",
     "helmet": "^7.1.0",
     "luxon": "^3.4.4",

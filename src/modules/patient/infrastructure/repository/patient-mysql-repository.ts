@@ -11,11 +11,14 @@ import {
   PatientFindParams,
   PatientListParams,
   PatientPaginateParams,
+  PatientReportParams,
 } from '../../domain/patient.params';
 import { PatientEntity } from '../../domain/patient.entity';
 import { PaginateEntity } from 'src/shared/persistence/domain/paginate.entity';
 import { PatientValue } from '../../domain/patient.value';
 import { PatientSelectMysqlQuery } from './query/patient-select-mysql.query';
+import { PatientReportInterface } from '../../domain/interfaces/patient-report.interface';
+import { PatientReportMysqlQuery } from './query/patient-report-mysql.query';
 
 @Injectable()
 export class PatientMysqlRepository
@@ -77,5 +80,12 @@ export class PatientMysqlRepository
       .select('COUNT(*) total')
       .getRawOne();
     return parseInt(total);
+  }
+
+  async listReport(
+    params: PatientReportParams,
+  ): Promise<PatientReportInterface[]> {
+    const repository = this.manager.getRepository(PatientMysqlSchema);
+    return new PatientReportMysqlQuery(repository).query(params).getRawMany();
   }
 }
