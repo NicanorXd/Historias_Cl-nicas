@@ -3,9 +3,9 @@ export interface TratamientoEntity {
   officeId: number;
   description: string;
   medicamento: string;
-  presentationId: number;
+  presentation: string;
   dosis: string;
   frequency: string;
-  administrationId: number;
+  administration: string;
   duration: string;
 }

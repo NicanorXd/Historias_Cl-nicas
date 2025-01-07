@@ -24,6 +24,7 @@ import { AttentionMysqlRepository } from 'src/modules/attention/infrastructure/r
 import { OfficeFindService } from '../../application/office-find.service';
 import { OfficeHistoryHtmlReport } from '../reports/office-history-html.report';
 import { ApiTags } from '@nestjs/swagger';
+import { OfficeRecetaHtmlReport } from '../reports/office-receta-html.report';
 
 @ApiTags('office')
 @Controller('office')
@@ -35,6 +36,7 @@ export class OfficeHttpController {
     private tratamientoRepository: TratamientoMysqlRepository,
     private attentionRepository: AttentionMysqlRepository,
     private officeHistoryReport: OfficeHistoryHtmlReport,
+    private officeRecetaHtmlReport: OfficeRecetaHtmlReport,
   ) {}
 
   @Get()
@@ -86,6 +88,16 @@ export class OfficeHttpController {
   @Get(':id/history.html')
   async historyHtml(@Param() params: OfficeFindParams) {
     return this.officeHistoryReport
+      .execute(params)
+      .then((data) => new StreamableFile(data.buffer, { type: data.type }))
+      .catch((err) => {
+        throw new HttpExceptionCustom(err);
+      });
+  }
+
+  @Get(':id/receta.html')
+  async recetaHtml(@Param() params: OfficeFindParams) {
+    return this.officeRecetaHtmlReport
       .execute(params)
       .then((data) => new StreamableFile(data.buffer, { type: data.type }))
       .catch((err) => {

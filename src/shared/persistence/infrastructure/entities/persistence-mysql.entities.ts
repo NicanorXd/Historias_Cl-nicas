@@ -5,6 +5,7 @@ import { DiagnosisDetailMysqlSchema } from 'src/modules/diagnosis-detail/infrast
 import { DiagnosisMysqlSchema } from 'src/modules/diagnosis/infrastructure/schema/diagnosis-mysql.schema';
 import { InsuredTypeMysqlSchema } from 'src/modules/insured-type/infrastructure/schema/insured-type-mysql.schema';
 import { MedicalConsultationMysqlSchema } from 'src/modules/medical-consultation/infrastructure/schema/medical-consultation-mysql.schema';
+import { MedicineMysqlSchema } from 'src/modules/medicine/infrastructure/schema/medicine-mysql.schema';
 import { OfficeMysqlSchema } from 'src/modules/office/infrastructure/schema/office-mysql.schema';
 import { PatientMysqlSchema } from 'src/modules/patient/infrastructure/schema/patient-mysql.schema';
 import { PermissionMysqlSchema } from 'src/modules/permission/infrastructure/schema/permission-mysql.schema';
@@ -34,4 +35,5 @@ export const PersistenceMysqlEntities = [
   DiagnosisDetailMysqlSchema,
   TratamientoMysqlSchema,
   PermissionMysqlSchema,
+  MedicineMysqlSchema,
 ];

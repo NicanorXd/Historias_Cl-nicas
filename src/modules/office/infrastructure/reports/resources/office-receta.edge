@@ -5,114 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receta Médica</title>
     <style>
-        /* Estilo de la página */
         body {
-            font-family: 'Georgia', serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            height: 210mm;
-            padding: 5mm;
-            box-sizing: border-box;
+            background-color: #f8f8f8;
         }
-
-        h1, h2, h3 {
-            text-align: center;
-            color: #3c2a21; /* Color marrón oscuro */
-            font-family: 'Georgia', serif;
+        .receta {
+            width: 95%;
+            margin: 10px auto;
+            padding: 10px;
+            background: #fff;
+            border: 2px solid #000;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        /* Diseño de las secciones */
-        .info-paciente, .receta-medica {
-            background-color: #f4f4f4;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: 1px solid #3c2a21; /* Borde marrón oscuro */
-            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+        .receta-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .receta-header h1 {
+            font-size: 24px;
+            color: #003366;
+            margin: 0;
+        }
+        .receta-header .fecha {
             font-size: 14px;
+            color: #ff4500;
         }
-
-        .info-paciente h2, .receta-medica h2 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #4c3a2f; /* Tono marrón oscuro */
+        .receta-section {
+            margin: 15px 0;
         }
-
-        .info-paciente p, .receta-medica p {
-            font-size: 16px;
-            color: #4c3a2f; /* Tono marrón oscuro */
+        .receta-section h3 {
+            margin: 0 0 5px;
+            font-size: 18px;
+            color: #003366;
+            border-bottom: 2px solid #003366;
+        }
+        .receta-section p {
             margin: 5px 0;
+            font-size: 16px;
         }
-
-        .info-paciente .detalle, .receta-medica .detalle {
+        .highlight {
             font-weight: bold;
         }
-
-        /* Detalles de los medicamentos */
-        .medicamentos ul {
-            padding-left: 20px;
-            list-style-type: none;
-        }
-
-        .medicamentos li {
-            margin: 8px 0;
-            font-size: 15px;
-            color: #4c3a2f;
-        }
-
-       
-
-        /* Pie de página */
-        .footer {
+        .firma-medico {
             text-align: center;
-            font-size: 12px;
-            color: #7f7f7f;
             margin-top: 30px;
+            font-size: 18px;
+            color: #003366;
+            position: relative;
+        }
+        .firma-medico::before {
+            content: "";
+            display: block;
+            height: 100px;
+            background: url('firma.png') no-repeat center;
+            background-size: contain;
         }
 
-       
+        .header-title {
+            width: 100%;
+            text-align: center;
+        }
+
+        .item-flex {
+            display: inline-block;
+        }
+
+        .firma-border {
+            display: inline;
+            padding: 0.3em 2em;
+            border-top: 1px solid #000;
+        }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
     </style>
 </head>
-<body class="background-texture">
+<body>
+    <div class="receta">
+        <div class="receta-header">
+            <h1 class="header-title">RECETA MÉDICA</h1>
+            <div class="fecha">{{ datetime }}</div>
+        </div>
 
-    <!-- Cabecera -->
-    <div class="header">
-        <h1>Receta Médica</h1>
-        <p>Consultorio Médico Dr. Juan Pérez</p>
-    </div>
+        <div class="receta-section">
+            <h3>Información del Paciente</h3>
+            <p>
+                <span class="highlight">Nombre completo: </span> 
+                {{ office.attention?.medicalConsultation?.patient?.name }} {{ office.attention?.medicalConsultation?.patient?.lastname }}
+            </p>
+            <div>
+                <p class="item-flex">
+                    <span class="highlight">Edad: </span> 
+                    {{ birthday() }} años
+                </p>
+                <p class="item-flex">
+                    <span class="highlight">Sexo: </span> 
+                    {{ office.attention?.medicalConsultation?.patient?.gender }}
+                </p>
+            </div>
+            <p class="item-flex">
+                <span class="highlight">Talla:</span>
+                {{ office.attention.talle }} cm
+            </p>
+            <p class="item-flex">
+                <span class="highlight">Peso:</span> 
+                {{ office.attention.weigth }} Kg
+            </p>
+            <p class="item-flex">
+                <span class="highlight">IMC:</span> 
+                {{ office.attention.imc }}
+            </p>
+            <p class="item-flex">
+                <span class="highlight">Temperatura:</span> 
+                {{ office.attention.weigth }} C°
+            </p>
+            <p class="item-flex">
+                <span class="highlight">Presión arterial:</span> 
+                {{ office.attention.mmhg }} mmhg
+            </p>
+        </div>
 
-    <!-- Información del Paciente -->
-    <div class="info-paciente">
-        <h2>Información del Paciente</h2>
-        <p><span class="detalle">Nombre:</span> Ana María Gómez</p>
-        <p><span class="detalle">Edad:</span> 34 años</p>
-        <p><span class="detalle">Género:</span> Femenino</p>
-        <p><span class="detalle">Fecha de Nacimiento:</span> 2 de mayo de 1990</p>
-        <p><span class="detalle">Número de Identificación:</span> 9876543210</p>
-        <p><span class="detalle">Teléfono:</span> 555-1234-5678</p>
-    </div>
-
-    <!-- Receta Médica -->
-    <div class="receta-medica">
-        <h2>Receta Médica</h2>
-        <p><span class="detalle">Médico Tratante:</span> Dr. Juan Pérez</p>
-        <p><span class="detalle">Especialidad:</span> Medicina General</p>
-        <p><span class="detalle">Fecha de Consulta:</span> 30 de diciembre de 2024</p>
-        <h3>Medicamentos Recetados:</h3>
-        <div class="medicamentos">
+        <div class="receta-section">
+            <h3>Diagnóstico</h3>
             <ul>
-                <li><strong>Paracetamol 500mg:</strong> Tomar 1 tableta cada 8 horas durante 5 días.</li>
-                <li><strong>Amoxicilina 250mg:</strong> Tomar 1 cápsula cada 12 horas durante 7 días.</li>
-                <li><strong>Ibuprofeno 200mg:</strong> Tomar 1 tableta cada 6 horas en caso de dolor o fiebre.</li>
+                @each(item in office.diagnosis)
+                    <li class="uppercase">{{ item.diagnosis.description }} , {{ item.comment }}</li>
+                @endeach
             </ul>
         </div>
-        <p><span class="detalle">Instrucciones Adicionales:</span> Mantener reposo, evitar el consumo de alcohol durante el tratamiento y consultar al médico si los síntomas persisten.</p>
-    </div>
 
-    <!-- Pie de Página -->
-    <div class="footer">
-        <p>Este es un documento generado por el sistema de recetas médicas. Para cualquier duda, consulte a su médico.</p>
-    </div>
+        <div class="receta-section">
+            <h3>Tratamiento</h3>
+            <ul>
+                @each(item in office.tratamientos)
+                    <li>
+                        {{ item.medicamento }}, {{ item.presentation }}, {{ item.frequency }}, {{ item.administration }}, {{ item.duration }}
+                    </li>
+                @endeach
+            </ul>
+        </div>
 
+        <div class="firma-medico">
+            <p class="firma-border">Firma del Médico</p>
+        </div>
+    </div>
 </body>
 </html>

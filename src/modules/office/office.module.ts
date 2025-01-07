@@ -8,6 +8,7 @@ import { AnamnesisModule } from '../anamnesis/anamnesis.module';
 import { AttentionModule } from '../attention/attention.module';
 import { OfficeHistoryHtmlReport } from './infrastructure/reports/office-history-html.report';
 import { ReportsModule } from 'src/shared/reports/reports.module';
+import { OfficeRecetaHtmlReport } from './infrastructure/reports/office-receta-html.report';
 
 @Module({
   imports: [
@@ -18,7 +19,11 @@ import { ReportsModule } from 'src/shared/reports/reports.module';
     TratamientoModule,
     AttentionModule,
   ],
-  providers: [OfficeMysqlRepository, OfficeHistoryHtmlReport],
+  providers: [
+    OfficeMysqlRepository,
+    OfficeHistoryHtmlReport,
+    OfficeRecetaHtmlReport,
+  ],
   exports: [OfficeMysqlRepository],
   controllers: [OfficeHttpController],
 })

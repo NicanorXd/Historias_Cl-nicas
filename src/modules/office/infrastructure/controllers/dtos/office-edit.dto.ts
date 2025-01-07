@@ -34,10 +34,10 @@ const schema = zod.object({
       zod.object({
         description: zod.string(),
         medicamento: zod.string(),
-        presentationId: zod.number(),
+        presentation: zod.string(),
         dosis: zod.string(),
         frequency: zod.string(),
-        administrationId: zod.number(),
+        administration: zod.string(),
         duration: zod.string(),
       }),
     )

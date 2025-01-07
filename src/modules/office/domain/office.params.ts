@@ -48,9 +48,9 @@ export interface OfficeCreateDiagnosisDetailParams {
 export interface OfficeCreateTratamientoParams {
   description: string;
   medicamento: string;
-  presentationId: number;
+  presentation: string;
   dosis: string;
   frequency: string;
-  administrationId: number;
+  administration: string;
   duration: string;
 }

@@ -19,8 +19,6 @@ export class OfficeSelectMysqlQuery {
       .leftJoinAndSelect('o.diagnosis', 'd')
       .leftJoinAndSelect('d.diagnosis', 'od')
       .leftJoinAndSelect('o.tratamientos', 't')
-      .leftJoinAndSelect('t.presentation', 'pre')
-      .leftJoinAndSelect('t.administration', 'adm')
       .orderBy('o.datetime', 'DESC');
     // filters
     if (params.documentNumber) {

@@ -6,20 +6,20 @@ export class TratamientoValue implements TratamientoEntity {
   officeId: number;
   description: string;
   medicamento: string;
-  presentationId: number;
+  presentation: string;
   dosis: string;
   frequency: string;
-  administrationId: number;
+  administration: string;
   duration: string;
 
   constructor(params: TratamientoCreateParams) {
     this.officeId = params.officeId;
     this.description = params.description;
     this.medicamento = params.medicamento;
-    this.presentationId = params.presentationId;
+    this.presentation = params.presentation;
     this.dosis = params.dosis;
     this.frequency = params.frequency;
-    this.administrationId = params.administrationId;
+    this.administration = params.administration;
     this.duration = params.duration;
   }
 }
