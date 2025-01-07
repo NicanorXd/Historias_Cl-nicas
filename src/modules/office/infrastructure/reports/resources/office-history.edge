@@ -232,6 +232,7 @@
            <tr>
              <th>N°</th>
              <th>Medicamento</th>
+             <th>Descripción</th>
              <th>Presentación</th>
              <th>Dosis</th>
              <th>Vía de Administración</th>
@@ -243,7 +244,7 @@
           @each((item, index) in office.tratamientos)
            <tr>
              <td class="text-center">{{ index + 1 }}</td>
-             <td class="text-center">{{ item.description }}</td>
+             <td class="text-center">{{ item.medicamento }}</td>
              <td class="text-center">{{ item.presentation }}</td>
              <td class="text-center">{{ item.dosis }}</td>
              <td class="text-center">{{ item.administration }}</td>
